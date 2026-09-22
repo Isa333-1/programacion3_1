@@ -43,6 +43,11 @@ public class Pelicula
         return duracion;
     }
 
+    public void imprimir()
+    {
+        System.out.println("Titulo: " + nombre + "\nIdioma: " + idioma + "\nTipo: " + tipo + "\nDuracion: " + duracion + " minutos");
+    }
+
 
 
 }
