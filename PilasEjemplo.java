@@ -12,6 +12,7 @@ public class PilasEjemplo
         historial.push("teams.com");
         historial.push("whatsapp.com");
 
-        System.out.println("¿Esta vacío el historial? " + historial.empty());
+        System.out.println("¿Esta vacío el historial? " + "\nR// " + historial.empty());
+        System.out.println("¿Cual fue la ultima pagina en la que se navego? "+ "\nR// " + historial.peek());
     }
 }
