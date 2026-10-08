@@ -1,5 +1,5 @@
 package MiniProyecto;
-
+    
 import java.util.Scanner;
 
 public class Sala 
