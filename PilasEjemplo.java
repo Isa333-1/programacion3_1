@@ -14,5 +14,7 @@ public class PilasEjemplo
 
         System.out.println("¿Esta vacío el historial? " + "\nR// " + historial.empty());
         System.out.println("¿Cual fue la ultima pagina en la que se navego? "+ "\nR// " + historial.peek());
+        System.out.println("¿En que posicion del historial esta Youtube?" + "\nR// " + historial.search("youtube.com"));
+        System.out.println();
     }
 }
