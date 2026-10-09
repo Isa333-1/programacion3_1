@@ -37,7 +37,8 @@ public class PilasEjemplo
         System.out.println("Capacidad del historial: " + "\nR// " + historial.capacity());
         System.out.println("¿En el historial esta spotify?" + "\nR// " + historial.contains("spotify.com"));
         System.out.println("¿En el historial esta youtube? " + "\nR// " + historial.contains("youtube.com"));
-
-
+        System.out.println("¿Cuales el primer y tercer sitio visitado? " + "\nR// La primera busqueda fue: " 
+                            + historial.get(0) + "\n   La tercera busqueda fue: " + historial.elementAt(2));
+        System.out.println("¿Cual fue el ultimo sitio visitado? " + "\nR// " + historial.lastElement());
     }
 }
