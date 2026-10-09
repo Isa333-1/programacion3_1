@@ -29,7 +29,9 @@ public class PilasEjemplo
                                 + "\n7. Capacidad del historial"
                                 + "\n8. Buscar sitios web en el historial"
                                 + "\n9. Posicion de sitios web en el historial"
-                                + "\n10. p"
+                                + "\n10. Posicion desde 0 de cada elemento"
+                                + "\n11. Crear copia del historial"
+                                + "\n12. Borrar historial"
             );
 
             opcion = sc.nextInt();
@@ -67,18 +69,25 @@ public class PilasEjemplo
                     System.out.println("¿Cual fue el ultimo sitio visitado? " + "\nR// " + historial.lastElement());
                     break;
                 case 10:
-                    System.out.println("\np" + historial.indexOf("github.com"));
+                    System.out.println("\nPosicion de youtube: " + historial.indexOf("youtube.com"));
+                    System.out.println("\nPosicion de github: " + historial.indexOf("github.com"));
+                    System.out.println("\nPosicion de teams: " + historial.indexOf("teams.com"));
+                    System.out.println("\nPosicion de whatsapp: " + historial.indexOf("whatsapp.com"));
                     break;
                 case 11:
-
+                    Stack<String> historial1 = (Stack<String>)historial.clone();
+                    System.out.println("\nCopia del historial creado" + " historial original: " + historial + " copia del historial: " + historial1);
                     break;
+                case 12:
+                    historial.clear();
+                    System.out.println("\nHistorial borrado :D");
 
                 default:
                     break;
             }
 
             
-        } while (opcion != 9);
+        } while (opcion != 13);
 
     }
 }
