@@ -32,6 +32,7 @@ public class PilasEjemplo
                                 + "\n10. Posicion desde 0 de cada elemento"
                                 + "\n11. Crear copia del historial"
                                 + "\n12. Borrar historial"
+                                + "\n13. Visitar google"
             );
 
             opcion = sc.nextInt();
@@ -81,13 +82,14 @@ public class PilasEjemplo
                 case 12:
                     historial.clear();
                     System.out.println("\nHistorial borrado :D");
-
+                    break;
+                case 13:
+                    System.out.println("\nSe agrego el sitio web google a su historial de busqueda " +  historial.add("google.com"));
+                    break;
                 default:
+                    System.out.println("Opcion no valida");
                     break;
             }
-
-            
-        } while (opcion != 13);
-
+        } while (opcion != 14);
     }
 }
