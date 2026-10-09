@@ -19,12 +19,17 @@ public class PilasEjemplo
 
         do {
 
-            System.out.println("------------ Historial -----------");
+            System.out.println("\n------------ Historial -----------");
             System.out.println("1. Estado del historial" 
                                 + "\n2. Ultima pagina de navegacion" 
                                 + "\n3. Posicion de la busqueda youtube"
                                 + "\n4. Volver a la pagina anterior"
                                 + "\n5. Pagina actual"
+                                + "\n6. Total de sitios web del historial"
+                                + "\n7. Capacidad del historial"
+                                + "\n8. Buscar sitios web en el historial"
+                                + "\n9. Posicion de sitios web en el historial"
+                                + "\n10. p"
             );
 
             opcion = sc.nextInt();
@@ -32,24 +37,39 @@ public class PilasEjemplo
             switch (opcion) 
             {
                 case 1:
-                    System.out.println("¿Esta vacío el historial? " + "\nR// " + historial.empty());
+                    System.out.println("\n¿Esta vacío el historial? " + "\nR// " + historial.empty());
                     break;
                 case 2:
-
+                    System.out.println("\nLa ultima pagina de navegacion fue: " + historial.peek());
                     break;
-                case 2:
-
+                case 3:
+                    System.out.println("\nYoutube esta en la posicion " + historial.search("youtube.com") + " del historial");
                     break;
-                case 2:
-
+                case 4:
+                    System.out.println("\nLa pagina actual es: " + historial.pop() + " \nVolviendo a la pagina anterior..." + "\nLa pagina actual ahora es: " + historial.peek());
                     break;
-                case 2:
-
+                case 5:
+                    System.out.println("\nPagina actual: " + historial.peek());
                     break;
-                case 2:
-
+                case 6:
+                    System.out.println("\nEn el historial hay " + historial.size() + " sitios web");
                     break;
-                case 2:
+                case 7:
+                    System.out.println("\nCapacidad del historial: " + historial.capacity());
+                    break;
+                case 8:
+                    System.out.println("\n¿En el historial esta spotify?" + "\nR// " + historial.contains("spotify.com"));
+                    System.out.println("¿En el historial esta youtube? " + "\nR// " + historial.contains("youtube.com"));
+                    break;
+                case 9:
+                    System.out.println("\n¿Cuales el primer y tercer sitio visitado? " + "\nR// La primera busqueda fue: " 
+                            + historial.get(0) + "\n   La tercera busqueda fue: " + historial.elementAt(2));
+                    System.out.println("¿Cual fue el ultimo sitio visitado? " + "\nR// " + historial.lastElement());
+                    break;
+                case 10:
+                    System.out.println("\np" + historial.indexOf("github.com"));
+                    break;
+                case 11:
 
                     break;
 
@@ -58,32 +78,7 @@ public class PilasEjemplo
             }
 
             
-        } while (opcion != 10);
+        } while (opcion != 9);
 
-        
-        System.out.println("¿Cual fue la ultima pagina en la que se navego? "+ "\nR// " + historial.peek());
-        System.out.println("¿En que posicion del historial esta Youtube?" +  + historial.search("youtube.com"));
-        /*System.out.println("Desea volver a la pagina anterior?"
-                            + "\n1. Si"
-                            + "\n2. No"
-                            + "\nIngrese la opcion: "
-        );
-
-             
-        
-        if(opcion == 1)
-            System.out.println("La pagina actual es: " + historial.pop() + " \nVolviendo a la pagina anterior..." + "\nLa pagina actual ahora es: " + historial.peek());
-        else if(opcion == 2)
-            System.out.println("Pagina actual: " + historial.peek() + " no se hizo ningun cambio");
-        else
-            System.out.println("La opcion no es valida vuelva a intentar");*/
-
-        System.out.println("¿Cuantos sitios web hay en el historial? " + "\nR// " + historial.size());
-        System.out.println("Capacidad del historial: " + "\nR// " + historial.capacity());
-        System.out.println("¿En el historial esta spotify?" + "\nR// " + historial.contains("spotify.com"));
-        System.out.println("¿En el historial esta youtube? " + "\nR// " + historial.contains("youtube.com"));
-        System.out.println("¿Cuales el primer y tercer sitio visitado? " + "\nR// La primera busqueda fue: " 
-                            + historial.get(0) + "\n   La tercera busqueda fue: " + historial.elementAt(2));
-        System.out.println("¿Cual fue el ultimo sitio visitado? " + "\nR// " + historial.lastElement());
     }
 }
