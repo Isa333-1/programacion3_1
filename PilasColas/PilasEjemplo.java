@@ -35,7 +35,8 @@ public class PilasEjemplo
 
         System.out.println("¿Cuantos sitios web hay en el historial? " + "\nR// " + historial.size());
         System.out.println("Capacidad del historial: " + "\nR// " + historial.capacity());
-        System.out.println("¿En el historial esta spotify?" + "\nR// " + historial.);
+        System.out.println("¿En el historial esta spotify?" + "\nR// " + historial.contains("spotify.com"));
+        System.out.println("¿En el historial esta youtube? " + "\nR// " + historial.contains("youtube.com"));
 
 
     }
