@@ -15,7 +15,52 @@ public class PilasEjemplo
         historial.push("teams.com");
         historial.push("whatsapp.com");
 
-        System.out.println("¿Esta vacío el historial? " + "\nR// " + historial.empty());
+        int opcion = 0;
+
+        do {
+
+            System.out.println("------------ Historial -----------");
+            System.out.println("1. Estado del historial" 
+                                + "\n2. Ultima pagina de navegacion" 
+                                + "\n3. Posicion de la busqueda youtube"
+                                + "\n4. Volver a la pagina anterior"
+                                + "\n5. Pagina actual"
+            );
+
+            opcion = sc.nextInt();
+
+            switch (opcion) 
+            {
+                case 1:
+                    System.out.println("¿Esta vacío el historial? " + "\nR// " + historial.empty());
+                    break;
+                case 2:
+
+                    break;
+                case 2:
+
+                    break;
+                case 2:
+
+                    break;
+                case 2:
+
+                    break;
+                case 2:
+
+                    break;
+                case 2:
+
+                    break;
+
+                default:
+                    break;
+            }
+
+            
+        } while (opcion != 10);
+
+        
         System.out.println("¿Cual fue la ultima pagina en la que se navego? "+ "\nR// " + historial.peek());
         System.out.println("¿En que posicion del historial esta Youtube?" +  + historial.search("youtube.com"));
         /*System.out.println("Desea volver a la pagina anterior?"
@@ -24,7 +69,7 @@ public class PilasEjemplo
                             + "\nIngrese la opcion: "
         );
 
-        int opcion = sc.nextInt();     
+             
         
         if(opcion == 1)
             System.out.println("La pagina actual es: " + historial.pop() + " \nVolviendo a la pagina anterior..." + "\nLa pagina actual ahora es: " + historial.peek());
