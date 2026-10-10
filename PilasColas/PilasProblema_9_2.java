@@ -2,7 +2,7 @@ package PilasColas;
 
 import java.util.Stack;
 
-public class PilasEjercicio_9_2 
+public class PilasProblema_9_2 
 {       
     public static void main(String[] args) 
     {
