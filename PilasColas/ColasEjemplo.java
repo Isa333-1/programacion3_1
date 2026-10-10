@@ -15,6 +15,10 @@ public class ColasEjemplo
         colaImpresion.offer("Contrato.pdf");
         colaImpresion.offer("Despido.pdf");
 
+        System.out.println("¿No hay ningun archivo para imprimir? " + colaImpresion.isEmpty()
+                            + "\nLos documentos que hay en espera son: " + colaImpresion
+        );
+
         System.out.println("\nProximo documento a imprimir: " + colaImpresion.peek()
                             +"\nImprimiendo " + colaImpresion.poll() + " ..."
                             + "\nLos documentos que faltan por imprimir son: " + colaImpresion
