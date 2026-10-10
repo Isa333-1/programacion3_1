@@ -3,8 +3,12 @@ package PilasColas;
 import java.util.Stack;
 
 public class PilasEjercicio_9_2 
-{
-    
+{       
+    public static void main(String[] args) 
+    {
+        System.out.println(secuencia("abc&cba"));
+        System.out.println(secuencia("hola&hola"));
+    }
     public static boolean secuencia(String cadena)
     {
         Stack<String> caracteres = new Stack<>();
@@ -43,4 +47,6 @@ public class PilasEjercicio_9_2
 
         return caracteres.isEmpty();
     }
+
+    
 }
