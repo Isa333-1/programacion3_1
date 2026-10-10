@@ -16,8 +16,17 @@ public class ColasEjemplo
         colaImpresion.offer("Despido.pdf");
 
         System.out.println("\nProximo documento a imprimir: " + colaImpresion.peek()
-                            +"\nImprimiendo..." + colaImpresion.poll()
+                            +"\nImprimiendo " + colaImpresion.poll() + " ..."
                             + "\nLos documentos que faltan por imprimir son: " + colaImpresion
-    );
+        );
+        System.out.println("\nImprimiendo el siguiente documento en la cola: " 
+                            + colaImpresion.remove()
+                            + "\nLos elementos que faltan por imprimir son: " + colaImpresion
+        );
+        System.out.println("\nImprimiendo el siguiente elemento en la cola: "
+                            + colaImpresion.element()
+                            + colaImpresion.remove()
+                            + "\nLos elementos que faltan por imprimir son: " + colaImpresion
+        );
     }
 }
