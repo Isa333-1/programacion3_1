@@ -23,10 +23,11 @@ public class ColasEjemplo
                             + colaImpresion.remove()
                             + "\nLos elementos que faltan por imprimir son: " + colaImpresion
         );
-        System.out.println("\nImprimiendo el siguiente elemento en la cola: "
+        System.out.println("\nImprimiendo el siguiente documento en la cola: "
                             + colaImpresion.element()
                             + colaImpresion.remove()
-                            + "\nLos elementos que faltan por imprimir son: " + colaImpresion
+                            + "\nLos documentos que faltan por imprimir son: " + colaImpresion
         );
+        System.out.println("\nNumero de documentos en espera: " + colaImpresion.size());
     }
 }
