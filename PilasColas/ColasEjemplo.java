@@ -33,5 +33,13 @@ public class ColasEjemplo
                             + "\nLos documentos que faltan por imprimir son: " + colaImpresion
         );
         System.out.println("\nNumero de documentos en espera: " + colaImpresion.size());
+        System.out.println("\n¿Hay algun documento en espera llamado TallerQuimica1.pdf? "
+                            + "\nR// " + colaImpresion.contains("TallerQuimica1.pdf")
+                            + "\n¿Hay algun elemento llamado Despido.pdf " 
+                            + "\nR// " + colaImpresion.contains("Despido.pdf")
+        );
+        System.out.println("\nImprimiendo los ultimos documentos en espera...");
+        colaImpresion.clear();
+        System.out.println("Documentos en espera: " + colaImpresion.size());
     }
 }
