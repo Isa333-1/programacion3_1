@@ -23,5 +23,24 @@ public class PilasEjercicio_9_2
             return false;
         }
 
+        for (int i = 0; i < separador; i++) 
+        {
+            String x = cadena.substring(i, i+1);
+            caracteres.push(x);
+        }
+
+        for (int i = separador +  1; i < cadena.length(); i++) 
+        {
+            if(caracteres.isEmpty()) 
+                return false;
+
+            String y = caracteres.pop();
+            String caracter = cadena.substring(i, i+1);
+
+            if(!y.equals(caracter))
+                return false;
+        }
+
+        return caracteres.isEmpty();
     }
 }
