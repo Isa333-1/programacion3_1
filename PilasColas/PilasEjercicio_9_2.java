@@ -15,8 +15,12 @@ public class PilasEjercicio_9_2
             if(cadena.substring(i, i + 1).equals("&")){
                 separador = i;
                 break;
-            }
-                
+            }    
+        }
+
+        if (separador == -1) 
+        {
+            return false;
         }
 
     }
