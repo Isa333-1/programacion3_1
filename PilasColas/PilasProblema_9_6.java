@@ -17,6 +17,13 @@ public class PilasProblema_9_6
 
         String frase = sc.nextLine();
         frase = frase.replace(" ", "").toLowerCase();
+
+        for (int i = 0; i < frase.length(); i++) 
+        {
+            String caracter = frase.substring(i, i + 1);
+            pila.push(caracter)
+            cola.add(caracter);
+        }
     }
     
 }
