@@ -35,9 +35,28 @@ public class PilasProblema_9_5 {
             System.out.println(
                     "Ingrese el valor de k (-1 para borrar todos los elementos de la pila o 0 para seguir el proceso con i y j");
             int k = sc.nextInt();
+            int pilaAsig = Math.abs(i);
 
-            if (k == -1) {
+            if (k == -1) 
+            {
+                if (pilaAsig == 1)
+                    p1.clear(); 
+                else if (pilaAsig == 2) 
+                    p2.clear(); 
+                else if (pilaAsig == 3)  
+                    p3.clear(); 
+                else if (pilaAsig == 4)  
+                    p4.clear(); 
+                else if (pilaAsig == 5) 
+                    p5.clear(); 
+                
+                System.out.println("Se borraron todos los elementos de la Pila P" + pilaAsig);
 
+                System.out.println("pila 1: " + p1);
+                System.out.println("pila 2: " + p2);
+                System.out.println("pila 3: " + p3);
+                System.out.println("pila 4: " + p4);
+                System.out.println("pila 5: " + p5);
 
             } else if(k == 0) {
                 if (i > 0) {
@@ -53,7 +72,6 @@ public class PilasProblema_9_5 {
                         p5.push(j);
 
                 } else {
-                    int pilaAsig = Math.abs(i);
                     boolean eliminado = false;
                     int elementoRemovido = 0;
 
