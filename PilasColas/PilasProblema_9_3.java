@@ -2,13 +2,11 @@ package PilasColas;
 
 import java.util.Stack;
 
-public class PilasProblema_9_3 
-{
-    public static void main(String[] args) 
-    {
-        
+public class PilasProblema_9_3 {
+    public static void main(String[] args) {
+
     }
-    
+
     public static  boolean verificarEquilibrio(String expresion)
     {
         Stack<String> pila = new Stack<>();
@@ -18,10 +16,14 @@ public class PilasProblema_9_3
             String caracter = expresion.substring(i, i + 1);
 
             if(caracter.equals("(") || caracter.equals("[") || caracter.equals("{"))
+            {
                 pila.push(caracter);
-            else if(caracter.equals(")" || caracter.equals("]") || caracter.equals("}")))
-                if(pila.isEmpty())
-                    return false
+            }else if(caracter.equals(")" || caracter.equals("]") || caracter.equals("}")))
+                {
+                    if(pila.isEmpty())
+                        return false;
+                }
+                String anterior = pila.pop();
         }
     }
 }
