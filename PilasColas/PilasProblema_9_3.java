@@ -19,6 +19,9 @@ public class PilasProblema_9_3
 
             if(caracter.equals("(") || caracter.equals("[") || caracter.equals("{"))
                 pila.push(caracter);
+            else if(caracter.equals(")" || caracter.equals("]") || caracter.equals("}")))
+                if(pila.isEmpty())
+                    return false
         }
     }
 }
