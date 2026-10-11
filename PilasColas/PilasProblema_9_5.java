@@ -15,7 +15,7 @@ public class PilasProblema_9_5
 
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Ingrese paras de numeros enteros (i,j), ingrese i = 0 para finalizar ");
+        System.out.println("Ingrese paras de numeros enteros (i,j,k), ingrese i = 0 para finalizar ");
 
         while (true) 
         {
@@ -36,6 +36,9 @@ public class PilasProblema_9_5
 
             System.out.println("Ingrese j ");
             int j = sc.nextInt();
+
+            System.out.println("Ingrese el valor de k (-1 para borrar todos los elementos de la pila o 0 para seguir el proceso con i y j");
+            int k = sc.nextInt()
 
             if(i > 0)
             {
