@@ -2,9 +2,15 @@ package PilasColas;
 
 import java.util.Stack;
 
-public class PilasProblema_9_3 {
-    public static void main(String[] args) {
+public class PilasProblema_9_3 
+{
+    public static void main(String[] args) 
+    {
+        String expresion1 = "((a+b)*5) - 7";
+        String expresion2 = "2*[(a+b)/2.5 + x - 7*y";
 
+        System.out.println("La expresion " + expresion1 + " esta equilibrada? " + verificarEquilibrio(expresion1));
+        System.out.println("La expresion " + expresion2 + " esta equilibrada? " + verificarEquilibrio(expresion2));
     }
 
     public static  boolean verificarEquilibrio(String expresion)
@@ -21,15 +27,17 @@ public class PilasProblema_9_3 {
             {
                 if(pila.isEmpty())
                     return false;
-            }
-            String anterior = pila.pop();
+            
+                String anterior = pila.pop();
 
-            if(caracter.equals(")") && !anterior.equals("("))
-                return false;
-            if(caracter.equals("]") && !anterior.equals("["))
-                return false;
-            if(caracter.equals("}") && !anterior.equals("{"))
-                return false;
+                if(caracter.equals(")") && !anterior.equals("("))
+                    return false;
+                if(caracter.equals("]") && !anterior.equals("["))
+                    return false;
+                if(caracter.equals("}") && !anterior.equals("{"))
+                    return false;
+            }
         }
+        return pila.isEmpty(); //si la pila esta vacia significa que estaba equilibrada (true)
     }
 }
