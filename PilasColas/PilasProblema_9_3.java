@@ -16,14 +16,20 @@ public class PilasProblema_9_3 {
             String caracter = expresion.substring(i, i + 1);
 
             if(caracter.equals("(") || caracter.equals("[") || caracter.equals("{"))
-            {
                 pila.push(caracter);
-            }else if(caracter.equals(")" || caracter.equals("]") || caracter.equals("}")))
-                {
-                    if(pila.isEmpty())
-                        return false;
-                }
-                String anterior = pila.pop();
+            else if(caracter.equals(")") || caracter.equals("]") || caracter.equals("}"))
+            {
+                if(pila.isEmpty())
+                    return false;
+            }
+            String anterior = pila.pop();
+
+            if(caracter.equals(")") && !anterior.equals("("))
+                return false;
+            if(caracter.equals("]") && !anterior.equals("["))
+                return false;
+            if(caracter.equals("}") && !anterior.equals("{"))
+                return false;
         }
     }
 }
