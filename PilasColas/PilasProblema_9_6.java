@@ -13,7 +13,7 @@ public class PilasProblema_9_6
         Queue<String> cola = new LinkedList<>();
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("Ingrese la frase para verificar si es palindromo");
+        System.out.println("\nIngrese la frase para verificar si es palindromo");
 
         String frase = sc.nextLine();
         frase = frase.replace(" ", "").toLowerCase();
@@ -21,9 +21,28 @@ public class PilasProblema_9_6
         for (int i = 0; i < frase.length(); i++) 
         {
             String caracter = frase.substring(i, i + 1);
-            pila.push(caracter)
+            pila.push(caracter);
             cola.add(caracter);
         }
+
+        boolean palindromo = true;
+
+        for (int i = 0; i < frase.length(); i++) 
+        {
+            String caracterPila = pila.pop();
+            String caracterCola = cola.poll();
+
+            if(!caracterPila.equals(caracterCola))
+            {
+                palindromo = false;
+                break;
+            }
+        }
+
+        if (palindromo) 
+            System.out.println("\nLa frase es un palindromo");
+        else
+            System.out.println("\nLa frase no es un palindromo");
     }
     
 }
