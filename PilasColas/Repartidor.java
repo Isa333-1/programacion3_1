@@ -12,4 +12,36 @@ public class Repartidor
         this.entidad = entidad;
         this.diasTrabajados = diasTrabajados;
     }
+
+    public void setEntidad(String entidad) 
+    {
+        this.entidad = entidad;
+    }
+
+    public String getNss() 
+    {
+        return nss;
+    }
+
+    public String getEntidad() 
+    {
+        return entidad;
+    }
+
+    public int getDiasTrabajados() 
+    {
+        return diasTrabajados;
+    }
+
+    public void incrementarDias() 
+    {
+        diasTrabajados++;
+    }
+
+    public String toString() 
+    {
+        return "[NSS: " + nss + ", Entidad: " + entidad + ", Días Trabajados: " + diasTrabajados + "]";
+    }
+
+
 }
