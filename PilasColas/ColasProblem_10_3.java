@@ -57,7 +57,7 @@ public class ColasProblem_10_3
                         System.out.println("El cliente numero " + cliente + " se ha ubicado en la CAJA 3.");
                     }
 
-                    
+                    cliente++;
                     break;
                 case 2:
                     
