@@ -8,7 +8,7 @@ public class ColasProblema_10_5
 {
     public static void main(String[] args) 
     {
-        Scanner sc = new Scanner(System.in)
+        Scanner sc = new Scanner(System.in);
         Queue<String> colaNSS = new LinkedList<>();
         Queue<String> colaEntidad = new LinkedList<>();
 
@@ -63,6 +63,9 @@ public class ColasProblema_10_5
             } while (!colaNSS.isEmpty());
         }
 
-
+        System.out.println("\n----- LISTA ENLAZADA DE REPARTIDORES ACTUALIZADA -----");
+        for (int i = 0; i < listaRepartidores.size(); i++) {
+            System.out.println(listaRepartidores.get(i));
+        }
     }
 }

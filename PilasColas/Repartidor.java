@@ -38,6 +38,7 @@ public class Repartidor
         diasTrabajados++;
     }
 
+    @Override
     public String toString() 
     {
         return "[NSS: " + nss + ", Entidad: " + entidad + ", Días Trabajados: " + diasTrabajados + "]";
