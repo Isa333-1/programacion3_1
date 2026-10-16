@@ -50,7 +50,16 @@ public class TiendaFer
                     System.out.println("¡Producto agregado con exito!");
                     break;
                 case 2:
-                    
+                    System.out.println("\n--- PRODUCTOS EN EL CARRITO ---");
+                    if (compra.isEmpty()) { 
+                        System.out.println("El carrito esta vacio.");
+                    } else {
+                        System.out.println("Total de productos: " + compra.size());
+                        
+                        for (int i = 0; i < compra.size(); i++) {
+                            System.out.println((i + 1) + ". " + compra.get(i));
+                        }
+                    }
                     break;
                 case 3:
                     
