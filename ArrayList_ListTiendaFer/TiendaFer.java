@@ -110,7 +110,17 @@ public class TiendaFer
                     System.out.print("Escribe el producto que quieres verificar si esta en tu carrito: ");
                     String verificar = sc.nextLine();
                     
-                    if (compra.contains(verificar)) 
+                    encontrado = false;
+                    
+                    for (int i = 0; i < producto.size(); i++) {
+                        if (verificar.equalsIgnoreCase(producto.get(i))) 
+                        {
+                            encontrado = true;
+                            break; // Detenemos el ciclo si ya lo encontramos
+                        }
+                    }
+
+                    if (encontrado) 
                     {
                         System.out.println("El producto que ingresaste SI se encuentra en tu carrito.");
                         System.out.println("Numero del producto en el carrito: " + (compra.indexOf(verificar) + 1));
