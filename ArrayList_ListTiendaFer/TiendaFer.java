@@ -9,45 +9,70 @@ public class TiendaFer
     public static void main(String[] args) 
     {
         List <String> compra = new ArrayList<>();
+        List<String> producto = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         
+        producto.add("Aceite");
+        producto.add("Arroz");
+        producto.add("Azucar");
+        producto.add("Sal");
+        producto.add("Lentejas");
+        producto.add("Frijoles");
+        producto.add("Chocolate");
+        producto.add("Cafe");
+        producto.add("Croquetas");
+        producto.add("Spaguetti");
+        producto.add("Gelatina");
+        producto.add("Alimento humedo");
+
         int opcion = 0;
 
         do {
             
-            System.out.println("--------------- Bienvenido a TIENDA FER -------------");
-            System.out.println("1. Agregar producto"
-                                + "2. Ver carrito de compras"
-                                + "3. Buscar producto"
-                                + "4. Verificar si existe un producto"
-                                + "5. Eliminar producto por posicion o nombre"
-                                + "6. Opciones avanzadas de memoria"
-                                + "7. Vaciar todo el carrito"
-                                + "8. Salir"
-                                + "Elige una opcion: ");
+            System.out.println("\n--------------- Bienvenido a TIENDA FER -------------");
+            System.out.println("\n1. Agregar producto"
+                                + "\n2. Ver carrito de compras"
+                                + "\n3. Buscar producto"
+                                + "\n4. Verificar si existe un producto"
+                                + "\n5. Eliminar producto por posicion o nombre"
+                                + "\n6. Opciones avanzadas de memoria"
+                                + "\n7. Vaciar todo el carrito"
+                                + "\n8. Salir"
+                                + "\nElige una opcion: ");
 
             opcion = sc.nextInt();
+            sc.nextLine();
 
             switch (opcion) {
                 case 1:
-                    System.out.println("--------------- PRODUCTOS --------------"
-                                        + "\nAceite "
-                                        + "\nArroz"
-                                        + "\nAzucar"
-                                        + "\nSal"
-                                        + "\nLentejas"
-                                        + "\nFrijoles"
-                                        + "\nChocolate"
-                                        + "\nCafe"
-                                        + "\nCroquetas"
-                                        + "\nSpaguetti"
-                                        + "\nGelatina"
-                                        + "\nAlimento humedo"
-                    );
-                    System.out.print("Escribe el nombre del producto: ");
-                    String producto = sc.nextLine();
-                    compra.add(producto); 
-                    System.out.println("¡Producto agregado con exito!");
+                    System.out.println("--------------- PRODUCTOS --------------");
+                                       
+                    for (int i = 0; i < producto.size(); i++) 
+                    {
+                        System.out.println(producto.get(i));
+                    }
+                    System.out.println("Escribe el nombre del producto que quieres agregar");
+                    
+                    String productoSelec = sc.nextLine();
+
+                    boolean encontrado = false;
+    
+                    for (int i = 0; i < producto.size(); i++) {
+                        if (productoSelec.equalsIgnoreCase(producto.get(i))) 
+                        {
+                            encontrado = true;
+                            break; // Detenemos el ciclo si ya lo encontramos
+                        }
+                    }
+                    
+                    if (encontrado) 
+                    {
+                        compra.add(productoSelec);
+                        System.out.println("¡Producto agregado con exito!");
+                    } else {
+                        System.out.println("El producto no esta disponible en la lista.");
+                    }
+                
                     break;
                 case 2:
                     System.out.println("\n--- PRODUCTOS EN EL CARRITO ---");
@@ -62,10 +87,28 @@ public class TiendaFer
                     }
                     break;
                 case 3:
+                    System.out.print("¿Que producto deseas buscar?: ");
+                    String busqueda = sc.nextLine();
                     
+                    int primeraPos = compra.indexOf(busqueda);
+                    
+                    if (primeraPos != -1) {
+                        System.out.println("¡Si esta en el carrito!");
+                        System.out.println("Primera aparicion en la posicion: " + (primeraPos + 1));
+                        System.out.println("Ultima aparicion en la posicion: " + (compra.lastIndexOf(busqueda) + 1));
+                    } else {
+                        System.out.println("El producto no se encuentra en la lista.");
+                    }
                     break;
                 case 4:
+                    System.out.print("Escribe el producto que quieres verificar: ");
+                    String verificar = sc.nextLine();
                     
+                    if (compra.contains(verificar)) {
+                        System.out.println("El metodo contains() confirma que SÍ esta registrado.");
+                    } else {
+                        System.out.println("El producto NO esta en la lista.");
+                    }
                     break;
                 case 5:
                     
