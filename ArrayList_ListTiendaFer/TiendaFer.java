@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class TiendaFer 
-{
+public class TiendaFer {
     public static void main(String[] args) 
     {
         List <String> compra = new ArrayList<>();
@@ -129,7 +128,27 @@ public class TiendaFer
                     }
                     break;
                 case 5:
-                    
+                    System.out.println("\n--- ELIMINAR PRODUCTO ---");
+                    System.out.println("1. Por numero de posicion");
+                    System.out.println("2. Por nombre del producto");
+                    System.out.print("Elige una opcion: ");
+                    int opcionEliminar = sc.nextInt();
+                    sc.nextLine();
+
+                    // Switch para el submenú de eliminación
+                    switch (opcionEliminar) 
+                    {
+                        case 1:
+                            System.out.print("Ingresa el numero del producto a eliminar: ");
+                            int pos = sc.nextInt();
+                            if (pos > 0 && pos <= compra.size()) {
+                                String eliminado = compra.remove(pos - 1); // Método: remove(int)
+                                System.out.println("Se elimino correctamente: " + eliminado);
+                            } else {
+                                System.out.println("Posicion no valida.");
+                            }
+                            break;
+                    }
                     break;
                 case 6:
                     
