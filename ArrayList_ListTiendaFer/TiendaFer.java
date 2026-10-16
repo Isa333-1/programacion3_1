@@ -89,23 +89,31 @@ public class TiendaFer
                 case 3:
                     System.out.print("¿Que producto deseas buscar?: ");
                     String busqueda = sc.nextLine();
+                    encontrado = false;
+
+                    for (int i = 0; i < producto.size(); i++) {
+                        if (busqueda.equalsIgnoreCase(producto.get(i))) 
+                        {
+                            encontrado = true;
+                            break; // Detenemos el ciclo si ya lo encontramos
+                        }
+                    }
                     
-                    int primeraPos = compra.indexOf(busqueda);
-                    
-                    if (primeraPos != -1) {
-                        System.out.println("¡Si esta en el carrito!");
-                        System.out.println("Primera aparicion en la posicion: " + (primeraPos + 1));
-                        System.out.println("Ultima aparicion en la posicion: " + (compra.lastIndexOf(busqueda) + 1));
+                    if (encontrado) 
+                    {
+                        System.out.println("\nEl producto si se vende en la tienda!"); 
                     } else {
-                        System.out.println("El producto no se encuentra en la lista.");
+                        System.out.println("El producto no se vende en la tienda.");
                     }
                     break;
                 case 4:
-                    System.out.print("Escribe el producto que quieres verificar: ");
+                    System.out.print("Escribe el producto que quieres verificar si esta en tu carrito: ");
                     String verificar = sc.nextLine();
                     
-                    if (compra.contains(verificar)) {
-                        System.out.println("El metodo contains() confirma que SÍ esta registrado.");
+                    if (compra.contains(verificar)) 
+                    {
+                        System.out.println("El producto que ingresaste SI se encuentra en tu carrito.");
+                        System.out.println("Numero del producto en el carrito: " + (compra.indexOf(verificar) + 1));
                     } else {
                         System.out.println("El producto NO esta en la lista.");
                     }
