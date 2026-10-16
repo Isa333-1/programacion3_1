@@ -25,6 +25,56 @@ public class TiendaFer
                                 + "7. Vaciar todo el carrito"
                                 + "8. Salir"
                                 + "Elige una opcion: ");
+
+            opcion = sc.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    System.out.println("--------------- PRODUCTOS --------------"
+                                        + "\nAceite "
+                                        + "\nArroz"
+                                        + "\nAzucar"
+                                        + "\nSal"
+                                        + "\nLentejas"
+                                        + "\nFrijoles"
+                                        + "\nChocolate"
+                                        + "\nCafe"
+                                        + "\nCroquetas"
+                                        + "\nSpaguetti"
+                                        + "\nGelatina"
+                                        + "\nAlimento humedo"
+                    );
+                    System.out.print("Escribe el nombre del producto: ");
+                    String producto = sc.nextLine();
+                    compra.add(producto); 
+                    System.out.println("¡Producto agregado con exito!");
+                    break;
+                case 2:
+                    
+                    break;
+                case 3:
+                    
+                    break;
+                case 4:
+                    
+                    break;
+                case 5:
+                    
+                    break;
+                case 6:
+                    
+                    break;
+                case 7:
+                    
+                    break;
+                case 8:
+                    
+                    break;
+            
+                default:
+                    System.out.println("Opcion invalida ingrese la opcion de nuevo");
+                    break;
+            }
         } while (opcion != 7);
     }
 }
