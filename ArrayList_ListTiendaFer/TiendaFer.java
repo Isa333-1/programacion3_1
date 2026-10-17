@@ -36,7 +36,8 @@ public class TiendaFer {
                                 + "\n5. Eliminar producto del carrito"
                                 + "\n6. Reemplazar un producto del carrito"
                                 + "\n7. Vaciar todo el carrito"
-                                + "\n8. Salir"
+                                + "\n8. Visualizacion rápida del carrito"
+                                + "\n"
                                 + "\nElige una opcion: ");
 
             opcion = sc.nextInt();
@@ -207,7 +208,7 @@ public class TiendaFer {
                         }
                         
                         if (encontrado) {
-                            System.out.print("Escribe el nuevo nombre del producto: ");
+                            System.out.print("\nEscribe el nuevo nombre del producto: ");
                             String nuevoProducto = sc.nextLine();
 
                             encontrado = false;
@@ -223,20 +224,29 @@ public class TiendaFer {
                             if (encontrado) 
                             {
                                 String productoAnterior = compra.set(indice, nuevoProducto);
-                                System.out.println("¡Exito! Se reemplazo '" + productoAnterior + "' por '" + nuevoProducto + "'.");
+                                System.out.println("\n¡Exito! Se reemplazo '" + productoAnterior + "' por '" + nuevoProducto + "'.");
                             }
                             
                             
                         } else {
-                            System.out.println("El producto ingresado no se encuentra en tu carrito");
+                            System.out.println("\nEl producto ingresado no se encuentra en tu carrito");
                         }
                     }
                     break;
                 case 7:
                     compra.clear(); 
-                    System.out.println("¡El carrito se ha vaciado por completo!");
+                    System.out.println("\n¡El carrito se ha vaciado por completo!");
                     break;
                 case 8:
+                    System.out.println("\n--- MOSTRAR CARRITO ---");
+                    if (compra.isEmpty()) {
+                        System.out.println("El carrito esta vacio.");
+                    } else {
+                        System.out.println("\nEl carrito tiene " + compra.size() + " productos" );
+                        System.out.println("Contenido del carrito: " + compra.toString());
+                    }
+                    break;
+                case 9:
                     
                     break;
             
