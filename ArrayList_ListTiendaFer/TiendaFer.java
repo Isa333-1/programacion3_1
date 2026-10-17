@@ -148,6 +148,28 @@ public class TiendaFer {
                                 System.out.println("Posicion no valida.");
                             }
                             break;
+                        case 2:
+                            
+                            System.out.print("Ingresa el nombre del producto que quiertes eliminar: ");
+                            String nombreEliminar = sc.nextLine();
+
+                            encontrado = false;
+                    
+                            for (int i = 0; i < producto.size(); i++) {
+                                if (nombreEliminar.equalsIgnoreCase(producto.get(i))) 
+                                {
+                                    encontrado = true;
+                                    break; // Detenemos el ciclo si ya lo encontramos
+                                }
+                            }
+
+                            if (encontrado) { 
+                                compra.remove(nombreEliminar);
+                                System.out.println("El producto fue eliminado de la lista.");
+                            } else {
+                                System.out.println("No se encontro ese producto.");
+                            }
+                            break;
                     }
                     break;
                 case 6:
