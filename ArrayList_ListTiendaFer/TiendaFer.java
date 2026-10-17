@@ -8,6 +8,7 @@ public class TiendaFer {
     public static void main(String[] args) 
     {
         List <String> compra = new ArrayList<>();
+        List <String> promocion = new ArrayList<>();
         List<String> producto = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         
@@ -23,6 +24,10 @@ public class TiendaFer {
         producto.add("Spaguetti");
         producto.add("Gelatina");
         producto.add("Alimento humedo");
+        producto.add("Sardina");
+
+        promocion.add("Sardina");
+        promocion.add("Arroz");
 
         int opcion = 0;
 
@@ -37,7 +42,8 @@ public class TiendaFer {
                                 + "\n6. Reemplazar un producto del carrito"
                                 + "\n7. Vaciar todo el carrito"
                                 + "\n8. Visualizacion rápida del carrito"
-                                + "\n"
+                                + "\n9. Reclamar promocion"
+                                + "\n10. Salir"
                                 + "\nElige una opcion: ");
 
             opcion = sc.nextInt();
@@ -247,13 +253,25 @@ public class TiendaFer {
                     }
                     break;
                 case 9:
-                    
+                    System.out.println("\n------- Promocion -----------");
+                    System.out.println("\n* Por compra de un arroz y una sardina lleva gratis un aceite");
+                    boolean tieneTodo = compra.containsAll(promocion);
+    
+                    if (tieneTodo) {
+                        System.out.println("\n¡Felicidades reclamaste el aceite gratis! Tu carrito incluye un arroz y una sardina ");
+                        compra.add("Aceite");
+                    } else {
+                        System.out.println("\nNo tienes arroz y sardina en la lista, no puedes reclamar la promocion :c");
+                    }
+                    break;
+                case 10:
+                    System.out.println("\nGracias por usar nuestro programa :D");
                     break;
             
                 default:
-                    System.out.println("Opcion invalida ingrese la opcion de nuevo");
+                    System.out.println("\nOpcion invalida ingrese la opcion de nuevo");
                     break;
             }
-        } while (opcion != 7);
+        } while (opcion != 10);
     }
 }
