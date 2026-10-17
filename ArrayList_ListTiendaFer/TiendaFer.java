@@ -128,8 +128,8 @@ public class TiendaFer {
 
                     if (encontrado) 
                     {
-                        System.out.println("El producto que ingresaste SI se encuentra en tu carrito.");
-                        System.out.println("Numero del producto en el carrito: " + (compra.indexOf(verificar) + 1));
+                        System.out.println("\nEl producto que ingresaste SI se encuentra en tu carrito.");
+                        System.out.println("\nNumero del producto en el carrito: " + (compra.indexOf(verificar) + 1));
                     } else {
                         System.out.println("\nEl producto NO esta en el carrito.");
                     }
@@ -142,7 +142,7 @@ public class TiendaFer {
                     int opcionEliminar = sc.nextInt();
                     sc.nextLine();
 
-                    // Switch para el submenú de eliminación
+                    
                     switch (opcionEliminar) 
                     {
                         case 1:
@@ -152,19 +152,23 @@ public class TiendaFer {
                                 System.out.println((i+1)+ ". " + compra.get(i));
                             }
 
-                            System.out.println("\nEscribe el nombre del producto que quieres agregar");
                             System.out.print("\nIngresa el numero del producto a eliminar: ");
                             int pos = sc.nextInt();
                             if (pos > 0 && pos <= compra.size()) {
-                                String eliminado = compra.remove(pos - 1); // Método: remove(int)
-                                System.out.println("Se elimino correctamente: " + eliminado);
+                                String eliminado = compra.remove(pos - 1); 
+                                System.out.println("\nSe elimino correctamente: " + eliminado);
                             } else {
                                 System.out.println("Posicion no valida.");
                             }
                             break;
                         case 2:
-                            
-                            System.out.print("Ingresa el nombre del producto que quiertes eliminar: ");
+                            System.out.println("\n------------ Productos del carrito ----------");
+                            for (int i = 0; i < compra.size(); i++) 
+                            {
+                                System.out.println((i+1)+ ". " + compra.get(i));
+                            }
+
+                            System.out.print("\nIngresa el nombre del producto que quieres eliminar: ");
                             String nombreEliminar = sc.nextLine();
 
                             encontrado = false;
