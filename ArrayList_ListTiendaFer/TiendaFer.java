@@ -180,7 +180,57 @@ public class TiendaFer {
                     }
                     break;
                 case 6:
+                    System.out.println("\n--- REEMPLAZAR PRODUCTO EN EL CARRITO ---");
+    
+                    if (compra.isEmpty()) {
+                        System.out.println("\nEl carrito esta vacio, no hay productos para reemplazar");
+                    } else {
+                        System.out.println("\nProductos actuales en tu carrito:");
+                        for (int i = 0; i < compra.size(); i++) {
+                            System.out.println((i + 1) + ". " + compra.get(i));
+                        }
+                        
+                        System.out.print("\nIngresa el nombre del producto que deseas reemplazar: ");
+                        String productoActual = sc.nextLine();
+                        
+
+                        encontrado = false;
+                        int indice = 0;
                     
+                        for (int i = 0; i < compra.size(); i++) {
+                            if (productoActual.equalsIgnoreCase(compra.get(i))) 
+                            {
+                                encontrado = true;
+                                indice = i;
+                                break; // Detenemos el ciclo si ya lo encontramos
+                            }
+                        }
+                        
+                        if (encontrado) {
+                            System.out.print("Escribe el nuevo nombre del producto: ");
+                            String nuevoProducto = sc.nextLine();
+
+                            encontrado = false;
+                    
+                            for (int i = 0; i < producto.size(); i++) {
+                                if (nuevoProducto.equalsIgnoreCase(producto.get(i))) 
+                                {
+                                    encontrado = true;
+                                    break; // Detenemos el ciclo si ya lo encontramos
+                                }
+                            }
+
+                            if (encontrado) 
+                            {
+                                String productoAnterior = compra.set(indice, nuevoProducto);
+                                System.out.println("¡Exito! Se reemplazo '" + productoAnterior + "' por '" + nuevoProducto + "'.");
+                            }
+                            
+                            
+                        } else {
+                            System.out.println("El producto ingresado no se encuentra en tu carrito");
+                        }
+                    }
                     break;
                 case 7:
                     compra.clear(); 
