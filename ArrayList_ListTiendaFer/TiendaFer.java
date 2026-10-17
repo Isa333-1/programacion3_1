@@ -34,7 +34,7 @@ public class TiendaFer {
                                 + "\n3. Buscar producto de la tienda"
                                 + "\n4. Verificar si un producto esta en el carrito"
                                 + "\n5. Eliminar producto del carrito"
-                                + "\n6. Opciones avanzadas de memoria"
+                                + "\n6. Reemplazar un producto del carrito"
                                 + "\n7. Vaciar todo el carrito"
                                 + "\n8. Salir"
                                 + "\nElige una opcion: ");
@@ -183,7 +183,8 @@ public class TiendaFer {
                     
                     break;
                 case 7:
-                    
+                    compra.clear(); 
+                    System.out.println("¡El carrito se ha vaciado por completo!");
                     break;
                 case 8:
                     
