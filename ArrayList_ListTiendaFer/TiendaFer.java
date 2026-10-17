@@ -31,9 +31,9 @@ public class TiendaFer {
             System.out.println("\n--------------- Bienvenido a TIENDA FER -------------");
             System.out.println("\n1. Agregar producto"
                                 + "\n2. Ver carrito de compras"
-                                + "\n3. Buscar producto"
-                                + "\n4. Verificar si existe un producto"
-                                + "\n5. Eliminar producto por posicion o nombre"
+                                + "\n3. Buscar producto de la tienda"
+                                + "\n4. Verificar si un producto esta en el carrito"
+                                + "\n5. Eliminar producto del carrito"
                                 + "\n6. Opciones avanzadas de memoria"
                                 + "\n7. Vaciar todo el carrito"
                                 + "\n8. Salir"
@@ -50,7 +50,7 @@ public class TiendaFer {
                     {
                         System.out.println(producto.get(i));
                     }
-                    System.out.println("Escribe el nombre del producto que quieres agregar");
+                    System.out.println("\nEscribe el nombre del producto que quieres agregar");
                     
                     String productoSelec = sc.nextLine();
 
@@ -67,18 +67,18 @@ public class TiendaFer {
                     if (encontrado) 
                     {
                         compra.add(productoSelec);
-                        System.out.println("¡Producto agregado con exito!");
+                        System.out.println("\n¡Producto agregado con exito!");
                     } else {
-                        System.out.println("El producto no esta disponible en la lista.");
+                        System.out.println("\nEl producto no esta disponible en la lista.");
                     }
                 
                     break;
                 case 2:
                     System.out.println("\n--- PRODUCTOS EN EL CARRITO ---");
                     if (compra.isEmpty()) { 
-                        System.out.println("El carrito esta vacio.");
+                        System.out.println("\nEl carrito esta vacio.");
                     } else {
-                        System.out.println("Total de productos: " + compra.size());
+                        System.out.println("\nTotal de productos: " + compra.size());
                         
                         for (int i = 0; i < compra.size(); i++) {
                             System.out.println((i + 1) + ". " + compra.get(i));
@@ -86,7 +86,7 @@ public class TiendaFer {
                     }
                     break;
                 case 3:
-                    System.out.print("¿Que producto deseas buscar?: ");
+                    System.out.print("\n¿Que producto de la tienda desea buscar?: ");
                     String busqueda = sc.nextLine();
                     encontrado = false;
 
@@ -102,11 +102,11 @@ public class TiendaFer {
                     {
                         System.out.println("\nEl producto si se vende en la tienda!"); 
                     } else {
-                        System.out.println("El producto no se vende en la tienda.");
+                        System.out.println("\nEl producto no se vende en la tienda.");
                     }
                     break;
                 case 4:
-                    System.out.print("Escribe el producto que quieres verificar si esta en tu carrito: ");
+                    System.out.print("\nEscribe el producto que quieres verificar si esta en tu carrito: ");
                     String verificar = sc.nextLine();
                     
                     encontrado = false;
@@ -124,7 +124,7 @@ public class TiendaFer {
                         System.out.println("El producto que ingresaste SI se encuentra en tu carrito.");
                         System.out.println("Numero del producto en el carrito: " + (compra.indexOf(verificar) + 1));
                     } else {
-                        System.out.println("El producto NO esta en la lista.");
+                        System.out.println("\nEl producto NO esta en el carrito.");
                     }
                     break;
                 case 5:
@@ -139,7 +139,14 @@ public class TiendaFer {
                     switch (opcionEliminar) 
                     {
                         case 1:
-                            System.out.print("Ingresa el numero del producto a eliminar: ");
+                            System.out.println("\n------------ Productos del carrito ----------");
+                            for (int i = 0; i < compra.size(); i++) 
+                            {
+                                System.out.println((i+1)+ ". " + compra.get(i));
+                            }
+
+                            System.out.println("\nEscribe el nombre del producto que quieres agregar");
+                            System.out.print("\nIngresa el numero del producto a eliminar: ");
                             int pos = sc.nextInt();
                             if (pos > 0 && pos <= compra.size()) {
                                 String eliminado = compra.remove(pos - 1); // Método: remove(int)
