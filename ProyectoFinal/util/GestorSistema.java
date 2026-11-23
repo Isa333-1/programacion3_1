@@ -1,5 +1,13 @@
 package ProyectoFinal.util;
 
+import java.io.IOException;
+import java.util.Scanner;
+
+import ProyectoFinal.estructuras.ContenedorEstructuras;
+import ProyectoFinal.excepciones.ExcepcionesSistema.ArchivoInvalidoException;
+import ProyectoFinal.modelo.Campus;
+import ProyectoFinal.modelo.Estudiante;
+
 public class GestorSistema
 {
     private Scanner sc;
@@ -18,6 +26,22 @@ public class GestorSistema
         cargarMateriasCSV("/workspaces/programacion3_1/ProyectoFinal/materias.csv");
     }
 
+    public void registrarEstudiante()
+    {
+        System.out.println("\nREGISTRO DE ESTUDIANTE");
+        System.out.print("ID: ");
+        String id = sc.nextLine().trim();
+        System.out.print("Nombre: ");
+        String nombre = sc.nextLine().trim();
+        System.out.print("Email: ");
+        String email = sc.nextLine().trim();
+        System.out.print("Semestre actual: ");
+        int semestre = Integer.parseInt(sc.nextLine().trim());
+ 
+        Estudiante nuevo = new Estudiante(nombre, id, email, semestre);
+        estructuras.getEstudiantesMap().put(id, nuevo);
+        System.out.println("Estudiante registrado exitosamente.");
+    }
 
 
 }
