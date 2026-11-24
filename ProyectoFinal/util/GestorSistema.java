@@ -655,4 +655,39 @@ public class GestorSistema
         System.out.println("Fallidas: " + fallidas);
     }
 
+    public void cargarEstudiantesCSV(String ruta) throws ArchivoInvalidoException, IOException
+    {
+        File archivo = new File(ruta);
+        if (!archivo.exists() || !archivo.isFile())
+        {
+            throw new ArchivoInvalidoException("No se encontro el archivo de estudiantes: " + ruta);
+        }
+ 
+        BufferedReader br = new BufferedReader(new FileReader(archivo));
+        String linea;
+        int cargados = 0;
+ 
+        while ((linea = br.readLine()) != null)
+        {
+            if (!linea.trim().isEmpty()) {
+                String[] partes = linea.split(",");
+                if (partes.length < 4 || partes.length > 4)
+                {
+                    br.close();
+                    throw new ArchivoInvalidoException("Formato invalido en estudiantes.csv: " + linea);
+                }
+                String id = partes[0].trim();
+                String nombre = partes[1].trim();
+                String email = partes[2].trim();
+                int semestre = Integer.parseInt(partes[3].trim());
+ 
+                Estudiante est = new Estudiante(nombre, id, email, semestre);
+                estructuras.getEstudiantesMap().put(id, est);
+                cargados++;
+            }
+        }
+        br.close();
+        System.out.println("Se cargaron " + cargados + " estudiantes desde " + ruta);
+    }
+
 }
