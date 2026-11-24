@@ -333,4 +333,22 @@ public class GestorSistema
         System.out.println("Conexion agregada.");
     }
 
+    public void calcularRutaMasCorta()
+    {
+        String[] eds = campus.getEdificios();
+        System.out.println("\nCALCULAR RUTA MAS CORTA");
+        System.out.println("Edificios registrados:");
+        for (int i = 0; i < eds.length; i++)
+        {
+            System.out.println(i + ": " + eds[i]);
+        }
+        System.out.print("Indice origen: ");
+        int o = Integer.parseInt(sc.nextLine().trim());
+        System.out.print("Indice destino: ");
+        int d = Integer.parseInt(sc.nextLine().trim());
+ 
+        System.out.println("\nRESULTADO");
+        System.out.println(campus.calcularRutaDijkstra(o, d));
+    }
+
 }
