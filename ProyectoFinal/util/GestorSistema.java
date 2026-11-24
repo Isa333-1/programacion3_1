@@ -1,6 +1,7 @@
 package ProyectoFinal.util;
 
 import java.io.IOException;
+import java.util.Map;
 import java.util.Scanner;
 
 import ProyectoFinal.estructuras.ContenedorEstructuras;
@@ -56,6 +57,23 @@ public class GestorSistema
         }
         System.out.println("Resultado encontrado:");
         est.mostrarInformacion();
+    }
+
+      public void listarEstudiantes()
+    {
+        System.out.println("\nLISTA DE ESTUDIANTES");
+        Map<String, Estudiante> mapa = estructuras.getEstudiantesMap();
+        if (mapa.isEmpty())
+        {
+            System.out.println("No hay estudiantes registrados.");
+            return;
+        }
+ 
+        for (Map.Entry<String, Estudiante> entry : mapa.entrySet())
+        {
+            entry.getValue().mostrarInformacion();
+            System.out.println("------------------------------------------");
+        }
     }
 
 
