@@ -11,6 +11,7 @@ import ProyectoFinal.excepciones.ExcepcionesSistema.ColaDeEsperaVaciaException;
 import ProyectoFinal.excepciones.ExcepcionesSistema.CupoLlenoException;
 import ProyectoFinal.excepciones.ExcepcionesSistema.EstudianteNoEncontradoException;
 import ProyectoFinal.excepciones.ExcepcionesSistema.HorarioConflictivoException;
+import ProyectoFinal.excepciones.ExcepcionesSistema.PilaDeshacerVaciaException;
 import ProyectoFinal.excepciones.ExcepcionesSistema.PreRequisitoNoAprobadoException;
 import ProyectoFinal.modelo.Aula;
 import ProyectoFinal.modelo.Campus;
@@ -449,6 +450,64 @@ public class GestorSistema
             } else {
                 System.out.println("No hay reportes siguientes.");
             }
+        }
+    }
+
+    public void deshacerOperacion() throws PilaDeshacerVaciaException, CupoLlenoException
+    {
+        if (estructuras.getPilaDeshacer().isEmpty())
+        {
+            throw new PilaDeshacerVaciaException("No hay operaciones para deshacer.");
+        }
+        Operacion op = estructuras.getPilaDeshacer().pop();
+        estructuras.getPilaRehacer().push(op);
+ 
+        switch (op.getTipo())
+        {
+            case "INSCRIPCION":
+                Estudiante estIns = estructuras.getEstudiantesMap().get(op.getIdEstudiante());
+                Materia matIns = estructuras.getMateriasMap().get(op.getCodigoMateria());
+                if (estIns != null && matIns != null)
+                {
+                    matIns.cancelarInscripcion(estIns);
+                    System.out.println("Operacion deshecha: " + estIns.getNombre() + " ya NO esta inscrita en " + matIns.getCodigo());
+                }
+                break;
+            case "CANCELACION":
+                Estudiante estCan = estructuras.getEstudiantesMap().get(op.getIdEstudiante());
+                Materia matCan = estructuras.getMateriasMap().get(op.getCodigoMateria());
+                if (estCan != null && matCan != null)
+                {
+                    matCan.inscribirDirecto(estCan);
+                    System.out.println("Operacion deshecha: inscripcion restaurada.");
+                }
+                break;
+            case "HORARIO":
+                Aula aula = estructuras.getAulasMap().get(op.getNumeroAula());
+                if (aula != null)
+                {
+                    aula.liberar(op.getDia(), op.getHora(), op.getDuracion());
+                    System.out.println("Operacion deshecha: horario liberado.");
+                }
+                break;
+            case "NOTA":
+                Estudiante estNota = estructuras.getEstudiantesMap().get(op.getIdEstudiante());
+                if (estNota != null)
+                {
+                    estNota.registrarNota(op.getSemestre(), op.getIndiceNota(), op.getNotaAnterior());
+                    System.out.println("Operacion deshecha: nota restaurada.");
+                }
+                break;
+            case "ELIMINAR_ESTUDIANTE":
+                Estudiante respaldo = op.getEstudianteRespaldo();
+                if (respaldo != null)
+                {
+                    estructuras.getEstudiantesMap().put(respaldo.getId(), respaldo);
+                    System.out.println("Operacion deshecha: estudiante restaurado.");
+                }
+                break;
+            default:
+                break;
         }
     }
 
