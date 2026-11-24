@@ -296,4 +296,23 @@ public class GestorSistema
         }
     }
 
+    public void consultarDisponibilidad()
+    {
+        System.out.print("Aula: ");
+        String numAula = sc.nextLine().trim();
+        System.out.print("Dia (0-6): ");
+        int dia = Integer.parseInt(sc.nextLine().trim());
+        System.out.print("Hora (0-23): ");
+        int hora = Integer.parseInt(sc.nextLine().trim());
+ 
+        Aula aula = estructuras.getAulasMap().get(numAula);
+        if (aula != null)
+        {
+            String estado = aula.consultarDisponibilidad(dia, hora) ? "DISPONIBLE" : "RESERVADA";
+            System.out.println("Estado: " + estado);
+        } else {
+            System.out.println("Aula no encontrada.");
+        }
+    }
+
 }
