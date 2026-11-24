@@ -7,6 +7,7 @@ import java.util.Scanner;
 import ProyectoFinal.estructuras.ContenedorEstructuras;
 import ProyectoFinal.estructuras.Operacion;
 import ProyectoFinal.excepciones.ExcepcionesSistema.ArchivoInvalidoException;
+import ProyectoFinal.excepciones.ExcepcionesSistema.ColaDeEsperaVaciaException;
 import ProyectoFinal.excepciones.ExcepcionesSistema.CupoLlenoException;
 import ProyectoFinal.excepciones.ExcepcionesSistema.EstudianteNoEncontradoException;
 import ProyectoFinal.excepciones.ExcepcionesSistema.PreRequisitoNoAprobadoException;
@@ -188,6 +189,37 @@ public class GestorSistema
         estructuras.getPilaDeshacer().push(new Operacion("INSCRIPCION", est.getId(), mat.getCodigo()));
         estructuras.getPilaRehacer().clear();
         System.out.println("Cupo disponible (cupos restantes: " + mat.getCuposRestantes() + ")");
+    }
+
+    public void cancelarInscripcion() throws EstudianteNoEncontradoException, ColaDeEsperaVaciaException, CupoLlenoException
+    {
+        System.out.print("ID Estudiante: ");
+        String idEst = sc.nextLine().trim();
+        System.out.print("Codigo Materia: ");
+        String codMat = sc.nextLine().trim();
+ 
+        Estudiante est = estructuras.getEstudiantesMap().get(idEst);
+        if (est == null)
+        {
+            throw new EstudianteNoEncontradoException("No existe estudiante con ID: " + idEst);
+        }
+        Materia mat = estructuras.getMateriasMap().get(codMat);
+        if (mat == null)
+        {
+            System.out.println("Materia no encontrada.");
+            return;
+        }
+        mat.cancelarInscripcion(est);
+        estructuras.getPilaDeshacer().push(new Operacion("CANCELACION", est.getId(), mat.getCodigo()));
+        estructuras.getPilaRehacer().clear();
+        System.out.println("Cancelacion exitosa. Cupo liberado.");
+ 
+        if (!mat.getColaEspera().isEmpty())
+        {
+            Estudiante siguiente = mat.desencolarSiguiente();
+            mat.inscribirDirecto(siguiente);
+            System.out.println("Asignando cupo a " + siguiente.getNombre() + " (primer estudiante en cola)");
+        }
     }
 
 }
