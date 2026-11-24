@@ -10,6 +10,7 @@ import ProyectoFinal.excepciones.ExcepcionesSistema.ArchivoInvalidoException;
 import ProyectoFinal.excepciones.ExcepcionesSistema.EstudianteNoEncontradoException;
 import ProyectoFinal.modelo.Campus;
 import ProyectoFinal.modelo.Estudiante;
+import ProyectoFinal.modelo.Materia;
 
 public class GestorSistema
 {
@@ -93,7 +94,38 @@ public class GestorSistema
         System.out.println("Estudiante eliminado.");
     }
 
-    
+    public void crearMateria()
+    {
+        System.out.println("\nCREAR MATERIA");
+        System.out.print("Codigo: ");
+        String codigo = sc.nextLine().trim();
+        System.out.print("Nombre: ");
+        String nombre = sc.nextLine().trim();
+        System.out.print("Cupos maximos: ");
+        int cupos = Integer.parseInt(sc.nextLine().trim());
+        System.out.print("Creditos: ");
+        int creditos = Integer.parseInt(sc.nextLine().trim());
+ 
+        Materia materia = new Materia(codigo, nombre, cupos, creditos);
+        estructuras.getMateriasMap().put(codigo, materia);
+        System.out.println("Materia creada exitosamente.");
+    }
 
+    public void agregarPreRequisito()
+    {
+        System.out.print("Codigo de la materia: ");
+        String codMateria = sc.nextLine().trim();
+        System.out.print("Codigo del pre-requisito: ");
+        String codPre = sc.nextLine().trim();
+ 
+        Materia mat = estructuras.getMateriasMap().get(codMateria);
+        Materia pre = estructuras.getMateriasMap().get(codPre);
+        String msg = (mat != null && pre != null) ? "Pre-requisito agregado." : "Materia o pre-requisito no encontrado.";
+        if (mat != null && pre != null)
+        {
+            mat.agregarPreRequisito(pre);
+        }
+        System.out.println(msg);
+    }
 
 }
