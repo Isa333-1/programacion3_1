@@ -128,4 +128,27 @@ public class GestorSistema
         System.out.println(msg);
     }
 
+    public void mostrarPreRequisitos()
+    {
+        System.out.print("Codigo de la materia: ");
+        String codMateria = sc.nextLine().trim();
+        Materia mat = estructuras.getMateriasMap().get(codMateria);
+        if (mat == null)
+        {
+            System.out.println("Materia no encontrada.");
+            return;
+        }
+        System.out.println("Pre-requisitos de " + mat.getCodigo() + " - " + mat.getNombre() + ":");
+        if (mat.getPreRequisitos().isEmpty())
+        {
+            System.out.println("Ninguno.");
+            return;
+        }
+        for (int i = 0; i < mat.getPreRequisitos().size(); i++)
+        {
+            Materia pre = mat.getPreRequisitos().get(i);
+            System.out.println("- " + pre.getCodigo() + ": " + pre.getNombre());
+        }
+    }
+
 }
