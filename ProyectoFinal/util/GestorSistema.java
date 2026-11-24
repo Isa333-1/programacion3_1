@@ -351,4 +351,29 @@ public class GestorSistema
         System.out.println(campus.calcularRutaDijkstra(o, d));
     }
 
+    public void registrarNota() throws EstudianteNoEncontradoException
+    {
+        System.out.print("ID Estudiante: ");
+        String idEst = sc.nextLine().trim();
+        System.out.print("Semestre (1-10): ");
+        int sem = Integer.parseInt(sc.nextLine().trim());
+        System.out.print("Indice de materia (0-19): ");
+        int idx = Integer.parseInt(sc.nextLine().trim());
+        System.out.print("Nota (0.0 - 5.0): ");
+        Double nota = Double.parseDouble(sc.nextLine().trim());
+ 
+        Estudiante est = estructuras.getEstudiantesMap().get(idEst);
+        if (est == null)
+        {
+            throw new EstudianteNoEncontradoException("No existe estudiante con ID: " + idEst);
+        }
+        Double anterior = est.getNotas()[sem - 1][idx];
+        est.registrarNota(sem, idx, nota);
+        estructuras.getPilaDeshacer().push(Operacion.crearOperacionNota(idEst, sem, idx, anterior));
+        estructuras.getPilaRehacer().clear();
+        System.out.println("Nota registrada.");
+    }
+
+    
+
 }
