@@ -413,6 +413,43 @@ public class GestorSistema
                 sb.append(String.format("Promedio: %.2f%n", est.calcularPromedioSemestre(s + 1)));
             }
         }
+
+        sb.append("=== RESUMEN ===\n");
+        sb.append(String.format("Promedio acumulado: %.2f%n", est.calcularPromedioAcumulado()));
+        sb.append("Materias aprobadas: ").append(est.contarAprobadas()).append("\n");
+        sb.append("Materias reprobadas: ").append(est.contarReprobadas()).append("\n");
+ 
+        String reporte = sb.toString();
+        System.out.println(reporte);
+        estructuras.getPilaReportes().push(reporte);
+        estructuras.getPilaAdelanteReportes().clear();
+    }
+
+    public void navegadorReportes()
+    {
+        System.out.println("1. Atras | 2. Adelante");
+        System.out.print("Seleccione: ");
+        String dir = sc.nextLine().trim();
+        if (dir.equals("1"))
+        {
+            if (!estructuras.getPilaReportes().isEmpty())
+            {
+                estructuras.getPilaAdelanteReportes().push(estructuras.getPilaReportes().pop());
+                String msg = !estructuras.getPilaReportes().isEmpty() ? estructuras.getPilaReportes().peek() : "Inicio de reportes.";
+                System.out.println(msg);
+            } else {
+                System.out.println("No hay reportes anteriores.");
+            }
+        } else if (dir.equals("2")) {
+            if (!estructuras.getPilaAdelanteReportes().isEmpty())
+            {
+                String sig = estructuras.getPilaAdelanteReportes().pop();
+                estructuras.getPilaReportes().push(sig);
+                System.out.println(sig);
+            } else {
+                System.out.println("No hay reportes siguientes.");
+            }
+        }
     }
 
 }
