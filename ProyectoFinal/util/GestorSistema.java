@@ -1,7 +1,11 @@
 package ProyectoFinal.util;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Scanner;
 
 import ProyectoFinal.estructuras.ContenedorEstructuras;
@@ -558,6 +562,97 @@ public class GestorSistema
             default:
                 break;
         }
+    }
+
+    public void procesarArchivoCSV() throws ArchivoInvalidoException, IOException
+    {
+        System.out.print("Ruta del archivo CSV (ej. inscripciones.csv): ");
+        String ruta = sc.nextLine().trim();
+        File archivo = new File(ruta);
+        if (!archivo.exists() || !archivo.isFile())
+        {
+            throw new ArchivoInvalidoException("Archivo no encontrado: " + ruta);
+        }
+ 
+        Queue<String[]> cola = estructuras.getColaBatch();
+        cola.clear();
+ 
+        BufferedReader br = new BufferedReader(new FileReader(archivo));
+        String linea;
+        while ((linea = br.readLine()) != null)
+        {
+            if (!linea.trim().isEmpty())
+            {
+                String[] partes = linea.split(",");
+                if (partes.length < 2) {
+                    br.close();
+                    throw new ArchivoInvalidoException("Formato invalido en linea: " + linea);
+                }
+                cola.offer(new String[]{partes[0].trim(), partes[1].trim()});
+            }
+        }
+        br.close();
+ 
+        System.out.println("\nPROCESAMIENTO MASIVO (BATCH)");
+        System.out.println("Archivo: " + ruta);
+        int total = cola.size();
+        System.out.println("Se encolaron " + total + " solicitudes.");
+        System.out.println("Procesando cola...");
+ 
+        int exitosas = 0;
+        int fallidas = 0;
+        int i = 1;
+ 
+        while (!cola.isEmpty())
+        {
+            String[] sol = cola.poll();
+            Estudiante est = estructuras.getEstudiantesMap().get(sol[0]);
+            Materia mat = estructuras.getMateriasMap().get(sol[1]);
+            boolean inscrito = false;
+            String motivo = "";
+ 
+            if (est == null || mat == null)
+            {
+                motivo = "Estudiante o materia no existe";
+            } else {
+                boolean cumplePre = true;
+                for (int p = 0; p < mat.getPreRequisitos().size(); p++)
+                {
+                    if (!est.tieneMateriaAprobada(mat.getPreRequisitos().get(p).getCodigo()))
+                    {
+                        cumplePre = false;
+                        motivo = "Pre-requisito faltante: " + mat.getPreRequisitos().get(p).getCodigo();
+                        break;
+                    }
+                }
+                if (cumplePre)
+                {
+                    if (!mat.estaLlena())
+                    {
+                        mat.getInscritos().add(est);
+                        est.agregarMateriaHistorial(mat);
+                        inscrito = true;
+                    } else {
+                        mat.encolarEstudiante(est);
+                        motivo = "Cupo lleno (en cola de espera)";
+                    }
+                }
+            }
+ 
+            if (inscrito)
+            {
+                exitosas++;
+                System.out.println("[" + i + "/" + total + "] " + sol[0] + " -> " + sol[1] + " Exitosa");
+            } else {
+                fallidas++;
+                System.out.println("[" + i + "/" + total + "] " + sol[0] + " -> " + sol[1] + " Fallida (" + motivo + ")");
+            }
+            i++;
+        }
+ 
+        System.out.println("=== RESUMEN ===");
+        System.out.println("Exitosas: " + exitosas);
+        System.out.println("Fallidas: " + fallidas);
     }
 
 }
