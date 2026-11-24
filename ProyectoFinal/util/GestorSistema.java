@@ -222,4 +222,24 @@ public class GestorSistema
         }
     }
 
+      public void mostrarColaEspera()
+    {
+        System.out.print("Codigo Materia: ");
+        String codMat = sc.nextLine().trim();
+        Materia mat = estructuras.getMateriasMap().get(codMat);
+        if (mat == null)
+        {
+            System.out.println("Materia no encontrada.");
+            return;
+        }
+        System.out.println("MOSTRAR COLA DE ESPERA");
+        int pos = 1;
+        for (Estudiante est : mat.getColaEspera())
+        {
+            System.out.println("Posicion " + pos + ": " + est.getNombre());
+            pos++;
+        }
+        System.out.println("Total en espera: " + mat.getColaEspera().size());
+    }
+
 }
