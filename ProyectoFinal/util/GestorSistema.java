@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import ProyectoFinal.estructuras.ContenedorEstructuras;
 import ProyectoFinal.excepciones.ExcepcionesSistema.ArchivoInvalidoException;
+import ProyectoFinal.excepciones.ExcepcionesSistema.EstudianteNoEncontradoException;
 import ProyectoFinal.modelo.Campus;
 import ProyectoFinal.modelo.Estudiante;
 
@@ -41,6 +42,20 @@ public class GestorSistema
         Estudiante nuevo = new Estudiante(nombre, id, email, semestre);
         estructuras.getEstudiantesMap().put(id, nuevo);
         System.out.println("Estudiante registrado exitosamente.");
+    }
+
+    public void buscarEstudiantePorId() throws EstudianteNoEncontradoException
+    {
+        System.out.println("\nBUSCAR ESTUDIANTE");
+        System.out.print("ID: ");
+        String id = sc.nextLine().trim();
+        Estudiante est = estructuras.getEstudiantesMap().get(id);
+        if (est == null)
+        {
+            throw new EstudianteNoEncontradoException("No existe estudiante con ID: " + id);
+        }
+        System.out.println("Resultado encontrado:");
+        est.mostrarInformacion();
     }
 
 
