@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 import ProyectoFinal.estructuras.ContenedorEstructuras;
+import ProyectoFinal.estructuras.Operacion;
 import ProyectoFinal.excepciones.ExcepcionesSistema.ArchivoInvalidoException;
 import ProyectoFinal.excepciones.ExcepcionesSistema.EstudianteNoEncontradoException;
 import ProyectoFinal.modelo.Campus;
@@ -74,6 +75,22 @@ public class GestorSistema
             entry.getValue().mostrarInformacion();
             System.out.println("------------------------------------------");
         }
+    }
+
+    public void eliminarEstudiante() throws EstudianteNoEncontradoException
+    {
+        System.out.println("\nELIMINAR ESTUDIANTE");
+        System.out.print("ID: ");
+        String id = sc.nextLine().trim();
+        Estudiante est = estructuras.getEstudiantesMap().get(id);
+        if (est == null)
+        {
+            throw new EstudianteNoEncontradoException("No existe estudiante con ID: " + id);
+        }
+        estructuras.getEstudiantesMap().remove(id);
+        estructuras.getPilaDeshacer().push(Operacion.crearOperacionEliminarEstudiante(est));
+        estructuras.getPilaRehacer().clear();
+        System.out.println("Estudiante eliminado.");
     }
 
 
