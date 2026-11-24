@@ -275,4 +275,25 @@ public class GestorSistema
         System.out.println("Reserva exitosa.");
     }
 
+    public void liberarHorario()
+    {
+        System.out.print("Aula: ");
+        String numAula = sc.nextLine().trim();
+        System.out.print("Dia (0-6): ");
+        int dia = Integer.parseInt(sc.nextLine().trim());
+        System.out.print("Hora (0-23): ");
+        int hora = Integer.parseInt(sc.nextLine().trim());
+        System.out.print("Duracion: ");
+        int duracion = Integer.parseInt(sc.nextLine().trim());
+ 
+        Aula aula = estructuras.getAulasMap().get(numAula);
+        if (aula != null)
+        {
+            aula.liberar(dia, hora, duracion);
+            System.out.println("Horario liberado.");
+        } else {
+            System.out.println("Aula no encontrada.");
+        }
+    }
+
 }
