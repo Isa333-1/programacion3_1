@@ -374,6 +374,45 @@ public class GestorSistema
         System.out.println("Nota registrada.");
     }
 
-    
+    public void verReporteAcademico() throws EstudianteNoEncontradoException
+    {
+        System.out.print("ID Estudiante: ");
+        String idEst = sc.nextLine().trim();
+        Estudiante est = estructuras.getEstudiantesMap().get(idEst);
+        if (est == null)
+        {
+            throw new EstudianteNoEncontradoException("No existe estudiante con ID: " + idEst);
+        }
+ 
+        StringBuilder sb = new StringBuilder();
+        sb.append("\nREPORTE ACADEMICO\n");
+        sb.append("Estudiante: ").append(est.getNombre()).append(" (ID: ").append(est.getId()).append(")\n");
+ 
+        Double[][] notas = est.getNotas();
+        for (int s = 0; s < notas.length; s++)
+        {
+            boolean hayNota = false;
+            for (int m = 0; m < notas[s].length; m++)
+            {
+                if (notas[s][m] != null)
+                {
+                    hayNota = true;
+                    break;
+                }
+            }
+            if (hayNota)
+            {
+                sb.append("Semestre ").append(s + 1).append(":\n");
+                for (int m = 0; m < notas[s].length; m++)
+                {
+                    if (notas[s][m] != null)
+                    {
+                        sb.append("Materia[").append(m).append("]: ").append(notas[s][m]).append("\n");
+                    }
+                }
+                sb.append(String.format("Promedio: %.2f%n", est.calcularPromedioSemestre(s + 1)));
+            }
+        }
+    }
 
 }
