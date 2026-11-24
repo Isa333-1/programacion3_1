@@ -7,7 +7,9 @@ import java.util.Scanner;
 import ProyectoFinal.estructuras.ContenedorEstructuras;
 import ProyectoFinal.estructuras.Operacion;
 import ProyectoFinal.excepciones.ExcepcionesSistema.ArchivoInvalidoException;
+import ProyectoFinal.excepciones.ExcepcionesSistema.CupoLlenoException;
 import ProyectoFinal.excepciones.ExcepcionesSistema.EstudianteNoEncontradoException;
+import ProyectoFinal.excepciones.ExcepcionesSistema.PreRequisitoNoAprobadoException;
 import ProyectoFinal.modelo.Campus;
 import ProyectoFinal.modelo.Estudiante;
 import ProyectoFinal.modelo.Materia;
@@ -149,6 +151,43 @@ public class GestorSistema
             Materia pre = mat.getPreRequisitos().get(i);
             System.out.println("- " + pre.getCodigo() + ": " + pre.getNombre());
         }
+    }
+
+    public void inscribirEstudiante() throws EstudianteNoEncontradoException, PreRequisitoNoAprobadoException, CupoLlenoException
+    {
+        System.out.print("ID Estudiante: ");
+        String idEst = sc.nextLine().trim();
+        System.out.print("Codigo Materia: ");
+        String codMat = sc.nextLine().trim();
+ 
+        Estudiante est = estructuras.getEstudiantesMap().get(idEst);
+        if (est == null)
+        {
+            throw new EstudianteNoEncontradoException("No existe estudiante con ID: " + idEst);
+        }
+        Materia mat = estructuras.getMateriasMap().get(codMat);
+        if (mat == null)
+        {
+            System.out.println("Materia no encontrada.");
+            return;
+        }
+        for (int i = 0; i < mat.getPreRequisitos().size(); i++)
+        {
+            Materia pre = mat.getPreRequisitos().get(i);
+            if (!est.tieneMateriaAprobada(pre.getCodigo()))
+            {
+                throw new PreRequisitoNoAprobadoException("Falta aprobar pre-requisito: " + pre.getCodigo());
+            }
+        }
+        if (mat.estaLlena())
+        {
+            mat.encolarEstudiante(est);
+            throw new CupoLlenoException("Materia llena. Agregada a COLA DE ESPERA");
+        }
+        mat.inscribirDirecto(est);
+        estructuras.getPilaDeshacer().push(new Operacion("INSCRIPCION", est.getId(), mat.getCodigo()));
+        estructuras.getPilaRehacer().clear();
+        System.out.println("Cupo disponible (cupos restantes: " + mat.getCuposRestantes() + ")");
     }
 
 }
