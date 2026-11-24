@@ -10,7 +10,9 @@ import ProyectoFinal.excepciones.ExcepcionesSistema.ArchivoInvalidoException;
 import ProyectoFinal.excepciones.ExcepcionesSistema.ColaDeEsperaVaciaException;
 import ProyectoFinal.excepciones.ExcepcionesSistema.CupoLlenoException;
 import ProyectoFinal.excepciones.ExcepcionesSistema.EstudianteNoEncontradoException;
+import ProyectoFinal.excepciones.ExcepcionesSistema.HorarioConflictivoException;
 import ProyectoFinal.excepciones.ExcepcionesSistema.PreRequisitoNoAprobadoException;
+import ProyectoFinal.modelo.Aula;
 import ProyectoFinal.modelo.Campus;
 import ProyectoFinal.modelo.Estudiante;
 import ProyectoFinal.modelo.Materia;
@@ -240,6 +242,37 @@ public class GestorSistema
             pos++;
         }
         System.out.println("Total en espera: " + mat.getColaEspera().size());
+    }
+
+    public void reservarHorario() throws HorarioConflictivoException
+    {
+        System.out.println("\nRESERVAR HORARIO EN AULA");
+        System.out.print("Aula: ");
+        String numAula = sc.nextLine().trim();
+        System.out.print("Dia (0=Dom..6=Sab, 1=Lunes): ");
+        int dia = Integer.parseInt(sc.nextLine().trim());
+        System.out.print("Hora (0-23): ");
+        int hora = Integer.parseInt(sc.nextLine().trim());
+        System.out.print("Duracion: ");
+        int duracion = Integer.parseInt(sc.nextLine().trim());
+ 
+        Aula aula = estructuras.getAulasMap().get(numAula);
+        if (aula == null)
+        {
+            aula = new Aula(numAula, 30);
+            estructuras.getAulasMap().put(numAula, aula);
+        }
+ 
+        System.out.println("Verificando disponibilidad...");
+        for (int h = hora; h < hora + duracion; h++)
+        {
+            String estado = aula.consultarDisponibilidad(dia, h) ? "LIBRE" : "OCUPADO";
+            System.out.println("Dia " + dia + " " + h + ":00 -> " + estado);
+        }
+        aula.reservar(dia, hora, duracion);
+        estructuras.getPilaDeshacer().push(Operacion.crearOperacionHorario(numAula, dia, hora, duracion));
+        estructuras.getPilaRehacer().clear();
+        System.out.println("Reserva exitosa.");
     }
 
 }
