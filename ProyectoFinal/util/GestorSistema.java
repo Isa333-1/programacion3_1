@@ -315,4 +315,22 @@ public class GestorSistema
         }
     }
 
+    public void agregarConexionEdificios()
+    {
+        String[] eds = campus.getEdificios();
+        for (int i = 0; i < eds.length; i++)
+        {
+            System.out.println(i + ": " + eds[i]);
+        }
+        System.out.print("Indice origen: ");
+        int o = Integer.parseInt(sc.nextLine().trim());
+        System.out.print("Indice destino: ");
+        int d = Integer.parseInt(sc.nextLine().trim());
+        System.out.print("Distancia en metros: ");
+        int dist = Integer.parseInt(sc.nextLine().trim());
+ 
+        campus.agregarConexion(o, d, dist);
+        System.out.println("Conexion agregada.");
+    }
+
 }
