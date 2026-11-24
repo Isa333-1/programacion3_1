@@ -511,4 +511,53 @@ public class GestorSistema
         }
     }
 
+    public void rehacerOperacion() throws PilaDeshacerVaciaException, CupoLlenoException, HorarioConflictivoException {
+        if (estructuras.getPilaRehacer().isEmpty())
+        {
+            throw new PilaDeshacerVaciaException("No hay operaciones para rehacer.");
+        }
+        Operacion op = estructuras.getPilaRehacer().pop();
+        estructuras.getPilaDeshacer().push(op);
+ 
+        switch (op.getTipo())
+        {
+            case "INSCRIPCION":
+                Estudiante estIns = estructuras.getEstudiantesMap().get(op.getIdEstudiante());
+                Materia matIns = estructuras.getMateriasMap().get(op.getCodigoMateria());
+                if (estIns != null && matIns != null)
+                {
+                    matIns.inscribirDirecto(estIns);
+                    System.out.println("Operacion rehecha: " + estIns.getNombre() + " inscrita en " + matIns.getCodigo());
+                }
+                break;
+            case "CANCELACION":
+                Estudiante estCan = estructuras.getEstudiantesMap().get(op.getIdEstudiante());
+                Materia matCan = estructuras.getMateriasMap().get(op.getCodigoMateria());
+                if (estCan != null && matCan != null)
+                {
+                    matCan.cancelarInscripcion(estCan);
+                    System.out.println("Operacion rehecha: cancelacion aplicada.");
+                }
+                break;
+            case "HORARIO":
+                Aula aula = estructuras.getAulasMap().get(op.getNumeroAula());
+                if (aula != null)
+                {
+                    aula.reservar(op.getDia(), op.getHora(), op.getDuracion());
+                    System.out.println("Operacion rehecha: horario reservado.");
+                }
+                break;
+            case "ELIMINAR_ESTUDIANTE":
+                Estudiante respaldo = op.getEstudianteRespaldo();
+                if (respaldo != null)
+                {
+                    estructuras.getEstudiantesMap().remove(respaldo.getId());
+                    System.out.println("Operacion rehecha: estudiante eliminado.");
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
 }
